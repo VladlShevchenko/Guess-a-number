@@ -30,11 +30,11 @@ int main()
 		}
 
 		if (mode) {
-			PlaySoundA((LPCSTR)"go-go-go.wav", NULL, SND_FILENAME | SND_ASYNC);
+			PlaySoundA((LPCSTR)"go.wav", NULL, SND_FILENAME | SND_ASYNC);
 			play_with_friend();
 		}
 		else {
-			PlaySoundA((LPCSTR)"go-go-go.wav", NULL, SND_FILENAME | SND_ASYNC);
+			PlaySoundA((LPCSTR)"go.wav", NULL, SND_FILENAME | SND_ASYNC);
 			play_with_computer();
 		}
 		cout << "\nContinue (Y - yes)? "; // Запит на продовження роботи
@@ -65,15 +65,19 @@ void play_with_computer() {
 		else if (guess < num) {
 			if (num - guess < 5) cout << "so close, but ";
 			cout << "too low, let`s try one more time\n\n";
+			PlaySoundA((LPCSTR)"no-6.wav", NULL, SND_FILENAME | SND_ASYNC);
 			tries++;
 		}
 		else if (guess > num) {
 			if (guess - num < 5) cout << "so close, but ";
 			cout << "too much, let`s try one more time\n\n";
+			PlaySoundA((LPCSTR)"no-4.wav", NULL, SND_FILENAME | SND_ASYNC);
 			tries++;
 		}
-		else
+		else {
 			cout << "\nRighhttt! You guess with " << tries << " tries!\n";
+			PlaySoundA((LPCSTR)"woohoo.wav", NULL, SND_FILENAME | SND_ASYNC);
+		}
 	} while (guess != num);
 
 	end = clock();
@@ -141,4 +145,3 @@ void play_with_friend() {
 	end = clock();
 	cout << "You played " << double(end - start) / CLOCKS_PER_SEC << " seconds";
 }
-
