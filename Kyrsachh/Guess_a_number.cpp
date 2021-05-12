@@ -14,6 +14,8 @@ void play_with_friend();
 int main()
 {
 	char vidp; //User's answer
+	srand(time(NULL));
+	time_t start, end;
 	do {
 		cout << "*** Choose mode to play ***\n"
 			<< "Mode 0 : With computer\n"
@@ -28,7 +30,7 @@ int main()
 			cin.clear();                //сбрасываем коматозное состояние cin
 			fflush(stdin);              //очищаем поток ввода
 		}
-
+	start = clock();
 		if (mode) {
 			PlaySoundA((LPCSTR)"go.wav", NULL, SND_FILENAME | SND_ASYNC);
 			play_with_friend();
@@ -40,6 +42,8 @@ int main()
 		cout << "\nContinue (Y - yes)? "; // Запит на продовження роботи
 		while ((vidp = getchar()) == ' ' || vidp == '\n' || vidp == '\t');
 	} while (vidp == 'Y' || vidp == 'y'); // умова повтору програми
+	end = clock();
+	cout << "You played " << double(end - start) / CLOCKS_PER_SEC << " seconds" << endl;
 	cout << "Have a nice day! :)" << endl;
 	return 0;
 }
@@ -49,7 +53,6 @@ int main()
 void play_with_computer() {
 
 	srand(time(NULL));
-	time_t start, end;
 
 	int num, guess, tries = 0;
 	srand(time(0)); //seed random number generator
@@ -60,7 +63,6 @@ void play_with_computer() {
 	{
 		cout << "Enter number between 1 and 100 : ";
 		cin >> guess; //користувач намагається вгадати число
-		start = clock();
 		if (guess < 1 || guess > 100) cout << "range from 1 to 100, but you have entered " << guess << endl << endl;
 		else if (guess < num) {
 			if (num - guess < 5) cout << "so close, but ";
@@ -79,9 +81,6 @@ void play_with_computer() {
 			PlaySoundA((LPCSTR)"woohoo.wav", NULL, SND_FILENAME | SND_ASYNC);
 		}
 	} while (guess != num);
-
-	end = clock();
-	cout << "You played " << double(end - start) / CLOCKS_PER_SEC << " seconds";
 }
 
 /*We have two players (player vs player).
@@ -91,7 +90,6 @@ void play_with_computer() {
 void play_with_friend() {
 	char vidp;
 	srand(time(NULL));
-	time_t start, end;
 
 	int num, guess, tries = 0, amount_of_tries;
 	cout << "First player enter a number: \n";
@@ -106,7 +104,6 @@ void play_with_friend() {
 	{
 		cout << "Enter number between 1 and 100 : ";
 		cin >> guess;
-		start = clock();
 		if (guess < 1 || guess > 100) cout << "range from 1 to 100, but you have entered " << guess << endl << endl;
 		else if (guess < num) {
 			if (num - guess < 5) {
@@ -141,7 +138,4 @@ void play_with_friend() {
 
 		}
 	} while (guess != num);
-
-	end = clock();
-	cout << "You played " << double(end - start) / CLOCKS_PER_SEC << " seconds";
 }
