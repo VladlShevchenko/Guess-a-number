@@ -19,12 +19,12 @@ void Menu::choose_mode(int& mode) {
 	while (cin.fail() || mode < 0 || mode > 1) {									// поки не буде введено ціле число, виконуємо цикл
 		cin.clear();																// скидаємо коматозний стан cin
 		cin.ignore(LONG__MAX, '\n');
-		//SETCOLOR(RED);
+		int color = system("color 4");
+		play_error();
 		cout << "Помилка вводу. Введіть 0 або 1: ";									// повідомляємо про помилку введення
-		//SETCOLOR(WHITE);
 		cin >> mode;																// просимо ще раз ввести число
+		color = system("color 7");
 	}
-
 	play_intro();																	// програємо звук go.wav
 }
 
@@ -47,8 +47,11 @@ void GameMode::play_with_computer() {
 		while (cin.fail() || guess < MIN_NUMBER || guess > MAX_NUMBER) {			// поки не буде введено ціле число, виконуємо цикл
 			cin.clear();															// скидаємо коматозний стан cin
 			cin.ignore(LONG__MAX, '\n');
+			int color = system("color 4");
 			cout << "Помилка вводу. Введіть ЧИСЛО від 1 до 100: ";					// повідомляємо про помилку введення
+			play_error();
 			cin >> guess;															// просимо ще раз ввести число
+			color = system("color 7");
 		}
 
 		if (guess < MIN_NUMBER || guess > MAX_NUMBER)								// якщо припущення користувача виходить за задані межі виводимо попередження
@@ -90,8 +93,11 @@ void GameMode::play_with_friend() {
 	{
 		cin.clear();															// скидаємо коматозний стан cin
 		cin.ignore(LONG__MAX, '\n');
+		int color = system("color 4");
+		play_error();
 		cout << "Помилка вводу. Введіть ЧИСЛО від 1 до 100  : ";				// повідомляємо про помилку введення
 		cin >> num;																// просимо ще раз ввести число
+		color = system("color 7");
 	}
 
 	cout << "Кількість спроб, яка надається для Second player: \n";
@@ -100,8 +106,11 @@ void GameMode::play_with_friend() {
 	while (cin.fail()) {														// поки не буде введено целочісельное число, виконуємо цикл
 		cin.clear();															// скидаємо коматозний стан cin
 		cin.ignore(LONG__MAX, '\n');
+		int color = system("color 4");
+		play_error();
 		cout << "Помилка вводу. Введіть ЧИСЛО: ";								// сообщаем об ошибке вводаскидаємо коматозний стан cin
 		cin >> amount_of_tries;													// просимо ще раз ввести число
+		color = system("color 7");
 	}
 
 	for (int prop = 0; prop < 100; prop++)
@@ -116,8 +125,11 @@ void GameMode::play_with_friend() {
 		while (cin.fail() || guess < MIN_NUMBER || guess > MAX_NUMBER) {		// поки не буде введено ціле число, виконуємо цикл
 			cin.clear();														// скидаємо коматозний стан cin
 			cin.ignore(LONG__MAX, '\n');
+			int color = system("color 4");
+			play_error();
 			cout << "Помилка вводу. Введіть ЧИСЛО від 1 до 100: ";				// повідомляємо про помилку введення
 			cin >> guess;														// просимо ще раз ввести число
+			color = system("color 7");
 		}
 
 		if (guess < MIN_NUMBER || guess > MAX_NUMBER)							// якщо припущення користувача виходить за задані межі виводимо попередження
@@ -165,4 +177,9 @@ void Game::play_no() {															// додаємо Випадкове виб
 }
 void Game::play_congatulation() {
 	PlaySoundA((LPCSTR)"woohoo.wav", NULL, SND_FILENAME | SND_ASYNC);			// програємо звук woohoo.wav
+}
+
+void Game::play_error()
+{
+	PlaySoundA((LPCSTR)"error0606.wav", NULL, SND_FILENAME | SND_ASYNC);			// програємо звук error0606.wav
 }
