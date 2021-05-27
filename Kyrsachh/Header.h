@@ -13,7 +13,7 @@ using namespace std;
 
 #define RED 4
 #define WHITE 15
-static const streamsize LONG__MAX = 9223372036854775807;
+static const streamsize  LONG__MAX = 9223372036854775807;
 static const int  MAX_NUMBER = 100;							//  максимальне загадане число
 static const int  MIN_NUMBER = 1;							//  мінімальне загадане число
 
@@ -23,6 +23,7 @@ protected:
 	void play_intro();										// ф-ція програвання звуку початку гри
 	void play_no();											// ф-ція програвання звуку невдачної спроби вгадати число
 	void play_congatulation();								// ф-ція програвання звуку перемоги
+	void play_error();										// ф-ція програвання звуку помилки
 
 public:
 	void set_console_output();								// ф-ція української локалізації
