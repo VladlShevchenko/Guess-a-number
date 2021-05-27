@@ -1,4 +1,4 @@
-#include "Header.h" //добавляем хедерный файл
+#include "Header.h"																	// підключаємо хедерний файл
 
 int main()
 {
@@ -6,27 +6,28 @@ int main()
 	Menu menu;
 	GameMode gamemode;
 
-	char vidp;																		// переменная для проверки на продолжения работы программы
-														
+	char vidp;																		// змінна для перевірки на продовження роботи програми
+
 	game.set_console_output();
-	time_t start, end;																// вводим локальные переменные типа time_t для опредиления начального и конечного времени игры
+	time_t start, end;																// вводимо локальні змінні типу time_t для визначення початкового і кінцевого часу гри
 	do {
 		int mode;
 		menu.choose_mode(mode);
 
-		start = clock();															// присваиваем переменной start время начала игры
-		if (mode) {																	// если mode истина(mode==1)
-			gamemode.play_with_friend();											// вызываем ф-цию play_with_friend()
+		start = clock();															// присвоюємо змінній start час початку гри
+		if (mode) {																	// якщо mode істина (mode == 1)
+			gamemode.play_with_friend();											// викликаємо ф-цію play_with_friend ()
 		}
-		else {																		// если mode ложь(mode==0)
-			gamemode.play_with_computer();											// вызываем ф-цию play_with_computer()
+		else {																		// якщо mode брехня (mode == 0)
+			gamemode.play_with_computer();											// викликаємо ф-цію play_with_computer ()
 		}
 
-		cout << "\nПродовжуємо (Y - yes)? ";										// предложение продолжить работу
-		while ((vidp = getchar()) == ' ' || vidp == '\n' || vidp == '\t');			// игнорирование пропусков
-	} while (vidp == 'Y' || vidp == 'y');											// условие повторной работы программы
-	
-	end = clock();																	// присваиваем переменной start время начала игры
+		cout << "\nПродовжуємо (Y - yes)? ";										// пропозиція продовжити роботу
+		while ((vidp = getchar()) == ' ' || vidp == '\n' || vidp == '\t');			// ігнорування пропусків
+	} while (vidp == 'Y' || vidp == 'y');											// умова повторної роботи програми
+
+	end = clock();																	// присвоюємо змінної end час початку гри
 	game.get_game_time(start, end);
+	system("pause");
 	return 0;
 }
