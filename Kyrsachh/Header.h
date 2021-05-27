@@ -13,7 +13,7 @@ using namespace std;
 
 #define RED 4
 #define WHITE 15
-static const long LONG__MAX = 9223372036854775807;
+static const streamsize LONG__MAX = 9223372036854775807;
 static const int  MAX_NUMBER = 100;							//  максимальне загадане число
 static const int  MIN_NUMBER = 1;							//  мінімальне загадане число
 
