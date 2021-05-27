@@ -21,9 +21,10 @@ int main()
 		else {																		// якщо mode брехня (mode == 0)
 			gamemode.play_with_computer();											// викликаємо ф-цію play_with_computer ()
 		}
-
+		int NotUsed = system("color 2");
 		cout << "\nПродовжуємо (Y - yes)? ";										// пропозиція продовжити роботу
 		while ((vidp = getchar()) == ' ' || vidp == '\n' || vidp == '\t');			// ігнорування пропусків
+		NotUsed = system("color 7");
 	} while (vidp == 'Y' || vidp == 'y');											// умова повторної роботи програми
 
 	end = clock();																	// присвоюємо змінної end час початку гри
